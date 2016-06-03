@@ -33,6 +33,10 @@ public class LexicalAnalyzer {
         this.get_clasifications(this.data);
     }
     
+    public void gitFunction(){
+        System.out.println("Funcion para probar git");
+    }
+    
     public static Integer countSpaces(String text){
         Integer count = 0;
         for(int i = 0; i < text.length(); i++){
