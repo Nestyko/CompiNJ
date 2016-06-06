@@ -150,8 +150,8 @@ public class LexicalAnalyzer {
         for (String word : words) {
             result += word;
         }
-        if(analysis_data != null){
-            System.out.println(analysis_data);
+        if(this.analysis_data != null){
+            System.out.println(this.analysis_data);
             HashMap<String, Integer> errors = (HashMap<String, Integer>)analysis_data.get("Error");
             for (Map.Entry<String, Integer> entry : errors.entrySet()) {
                 String key = entry.getKey();
