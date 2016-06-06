@@ -15,6 +15,7 @@ desktop.ini
 
 # Package Files #
 *.jar
+!mysql-connector-java-5.1.39-bin.jar //Excepcion para el driver de BD
 *.war
 *.ear
 
