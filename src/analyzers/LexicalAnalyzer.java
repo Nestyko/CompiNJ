@@ -47,18 +47,15 @@ public class LexicalAnalyzer {
         return count;
     }
     
-    /**
-     * Gets the clasifications
-     * @return the clasifications names
-     */
+
     public ArrayList<String> getClasifications(){
         return this.clasifications;
     }
     
     /**
-     * Finds a word and classify it 
-     * @param word is the word to find in data
-     * @return the calssification of the word
+     * Busca una palabra y la clasifica
+     * @param word es la palabra a buscar en los datos
+     * @return un array con las clasificaciones correspondiente
      */
     public ArrayList<String> find(String word){
         ArrayList<String> result = new ArrayList<>();
@@ -72,10 +69,10 @@ public class LexicalAnalyzer {
     }
     
     /**
-     * Counts the number of coincidences for each clasification
-     * @param text is the text that will be splited in the spaces, for analisys
-     * @return a map with clasification as key and number of coincidences as
-     * value
+     * Cuenta el numero de coincidencias para cada clasificacion
+     * @param text es el texto a analizar
+     * @return un mapa con las clasificaciones anidadas,
+     * y cuantas veces se repiten cada una.
      */
     public HashMap<String,HashMap> analisys(String text){
         String[] words = this.getTokens(this.removeComments(text));
