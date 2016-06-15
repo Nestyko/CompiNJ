@@ -81,7 +81,6 @@ public class main extends javax.swing.JFrame {
         analisis = new javax.swing.JMenu();
         lexico = new javax.swing.JMenuItem();
         sintactico = new javax.swing.JMenuItem();
-        arbol = new javax.swing.JMenuItem();
         semantico = new javax.swing.JMenuItem();
         todos = new javax.swing.JMenuItem();
         ver = new javax.swing.JMenu();
@@ -231,10 +230,12 @@ public class main extends javax.swing.JFrame {
 
         sintactico.setText("sintáctico");
         sintactico.setEnabled(false);
+        sintactico.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sintacticoActionPerformed(evt);
+            }
+        });
         analisis.add(sintactico);
-
-        arbol.setText("Arbol");
-        analisis.add(arbol);
 
         semantico.setText("semantico");
         analisis.add(semantico);
@@ -374,6 +375,11 @@ public class main extends javax.swing.JFrame {
         Salida = Entrada.getText().replaceAll(" ", "").replaceAll("\n","");
         System.out.print(Salida);       // TODO add your handling code here:
     }//GEN-LAST:event_todosActionPerformed
+
+    private void sintacticoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sintacticoActionPerformed
+        new Sintatico().setVisible(true);
+        setVisible(false);// TODO add your handling code here:
+    }//GEN-LAST:event_sintacticoActionPerformed
  
     /**
      * @param args the command line arguments
@@ -507,7 +513,6 @@ public class main extends javax.swing.JFrame {
     private javax.swing.JButton alinear_derecha;
     private javax.swing.JButton alinear_izquierda;
     private javax.swing.JMenu analisis;
-    private javax.swing.JMenuItem arbol;
     private javax.swing.JButton copy;
     private javax.swing.JButton cut;
     private javax.swing.JMenuItem guardar;

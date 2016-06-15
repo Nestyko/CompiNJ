@@ -376,6 +376,11 @@ public class Lexico extends javax.swing.JFrame {
 
         Sintatico.setText("Sintatico");
         Sintatico.setEnabled(false);
+        Sintatico.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SintaticoActionPerformed(evt);
+            }
+        });
         jMenu1.add(Sintatico);
 
         Salir.setText("Salir");
@@ -446,6 +451,11 @@ public class Lexico extends javax.swing.JFrame {
     private void ErroresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ErroresActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_ErroresActionPerformed
+
+    private void SintaticoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SintaticoActionPerformed
+        new Sintatico().setVisible(true);
+        setVisible(false);// TODO add your handling code here:
+    }//GEN-LAST:event_SintaticoActionPerformed
 
     /**
      * @param args the command line arguments
