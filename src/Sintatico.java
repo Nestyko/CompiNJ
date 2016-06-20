@@ -27,11 +27,29 @@ public class Sintatico extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
+        Arbol = new javax.swing.JPanel();
         EtiquetaArbol = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox();
+        PanelTodo = new javax.swing.JPanel();
+        EtiquetaTodo = new javax.swing.JLabel();
+        Todo = new javax.swing.JComboBox();
+        PanelSimples = new javax.swing.JPanel();
+        EtiquetaSimples = new javax.swing.JLabel();
+        Simples = new javax.swing.JComboBox();
+        PanelCompuesta = new javax.swing.JPanel();
+        EtiquetaCompuesta = new javax.swing.JLabel();
+        Compuesta = new javax.swing.JComboBox();
+        PanelVariables = new javax.swing.JPanel();
+        EtiquetaVariables = new javax.swing.JLabel();
+        Variables = new javax.swing.JComboBox();
+        PanelExpresiones = new javax.swing.JPanel();
+        EtiquetaExpresiones = new javax.swing.JLabel();
+        Expresiones = new javax.swing.JComboBox();
+        PanelComentarios = new javax.swing.JPanel();
+        EtiquetaComentarios = new javax.swing.JLabel();
+        Comentarios = new javax.swing.JComboBox();
+        PanelErrores = new javax.swing.JPanel();
+        EtiquetaErrores = new javax.swing.JLabel();
+        Errores = new javax.swing.JComboBox();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         volver = new javax.swing.JMenuItem();
@@ -39,46 +57,208 @@ public class Sintatico extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        Arbol.setBackground(new java.awt.Color(255, 255, 255));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout ArbolLayout = new javax.swing.GroupLayout(Arbol);
+        Arbol.setLayout(ArbolLayout);
+        ArbolLayout.setHorizontalGroup(
+            ArbolLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 283, Short.MAX_VALUE)
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 459, Short.MAX_VALUE)
+        ArbolLayout.setVerticalGroup(
+            ArbolLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
 
         EtiquetaArbol.setText("Arbol:");
 
-        jPanel2.setBackground(new java.awt.Color(204, 204, 204));
+        PanelTodo.setBackground(new java.awt.Color(204, 204, 204));
 
-        jLabel2.setText("Todas las palabras:");
+        EtiquetaTodo.setText("Todas las Palabras:");
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+        javax.swing.GroupLayout PanelTodoLayout = new javax.swing.GroupLayout(PanelTodo);
+        PanelTodo.setLayout(PanelTodoLayout);
+        PanelTodoLayout.setHorizontalGroup(
+            PanelTodoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PanelTodoLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addGap(0, 146, Short.MAX_VALUE))
-                    .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(PanelTodoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PanelTodoLayout.createSequentialGroup()
+                        .addComponent(EtiquetaTodo)
+                        .addGap(0, 166, Short.MAX_VALUE))
+                    .addComponent(Todo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+        PanelTodoLayout.setVerticalGroup(
+            PanelTodoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PanelTodoLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel2)
+                .addComponent(EtiquetaTodo)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addComponent(Todo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        PanelSimples.setBackground(new java.awt.Color(204, 204, 204));
+
+        EtiquetaSimples.setText("Palabras Simples:");
+
+        javax.swing.GroupLayout PanelSimplesLayout = new javax.swing.GroupLayout(PanelSimples);
+        PanelSimples.setLayout(PanelSimplesLayout);
+        PanelSimplesLayout.setHorizontalGroup(
+            PanelSimplesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PanelSimplesLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(PanelSimplesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PanelSimplesLayout.createSequentialGroup()
+                        .addComponent(EtiquetaSimples)
+                        .addGap(0, 176, Short.MAX_VALUE))
+                    .addComponent(Simples, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        PanelSimplesLayout.setVerticalGroup(
+            PanelSimplesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PanelSimplesLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(EtiquetaSimples)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Simples, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        PanelCompuesta.setBackground(new java.awt.Color(204, 204, 204));
+
+        EtiquetaCompuesta.setText("Palabras Compuesta:");
+
+        javax.swing.GroupLayout PanelCompuestaLayout = new javax.swing.GroupLayout(PanelCompuesta);
+        PanelCompuesta.setLayout(PanelCompuestaLayout);
+        PanelCompuestaLayout.setHorizontalGroup(
+            PanelCompuestaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PanelCompuestaLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(PanelCompuestaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PanelCompuestaLayout.createSequentialGroup()
+                        .addComponent(EtiquetaCompuesta)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(Compuesta, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        PanelCompuestaLayout.setVerticalGroup(
+            PanelCompuestaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PanelCompuestaLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(EtiquetaCompuesta)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Compuesta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        PanelVariables.setBackground(new java.awt.Color(204, 204, 204));
+
+        EtiquetaVariables.setText("Variables Declaradas:");
+
+        javax.swing.GroupLayout PanelVariablesLayout = new javax.swing.GroupLayout(PanelVariables);
+        PanelVariables.setLayout(PanelVariablesLayout);
+        PanelVariablesLayout.setHorizontalGroup(
+            PanelVariablesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PanelVariablesLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(PanelVariablesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PanelVariablesLayout.createSequentialGroup()
+                        .addComponent(EtiquetaVariables)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(Variables, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        PanelVariablesLayout.setVerticalGroup(
+            PanelVariablesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PanelVariablesLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(EtiquetaVariables)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Variables, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        PanelExpresiones.setBackground(new java.awt.Color(204, 204, 204));
+
+        EtiquetaExpresiones.setText("Expresiones Matematicas:");
+
+        javax.swing.GroupLayout PanelExpresionesLayout = new javax.swing.GroupLayout(PanelExpresiones);
+        PanelExpresiones.setLayout(PanelExpresionesLayout);
+        PanelExpresionesLayout.setHorizontalGroup(
+            PanelExpresionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PanelExpresionesLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(PanelExpresionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PanelExpresionesLayout.createSequentialGroup()
+                        .addComponent(EtiquetaExpresiones)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(Expresiones, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        PanelExpresionesLayout.setVerticalGroup(
+            PanelExpresionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PanelExpresionesLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(EtiquetaExpresiones)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Expresiones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        PanelComentarios.setBackground(new java.awt.Color(204, 204, 204));
+
+        EtiquetaComentarios.setText("Comentarios:");
+
+        javax.swing.GroupLayout PanelComentariosLayout = new javax.swing.GroupLayout(PanelComentarios);
+        PanelComentarios.setLayout(PanelComentariosLayout);
+        PanelComentariosLayout.setHorizontalGroup(
+            PanelComentariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PanelComentariosLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(PanelComentariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PanelComentariosLayout.createSequentialGroup()
+                        .addComponent(EtiquetaComentarios)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(Comentarios, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        PanelComentariosLayout.setVerticalGroup(
+            PanelComentariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PanelComentariosLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(EtiquetaComentarios)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Comentarios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        PanelErrores.setBackground(new java.awt.Color(204, 204, 204));
+
+        EtiquetaErrores.setText("Comentarios:");
+
+        javax.swing.GroupLayout PanelErroresLayout = new javax.swing.GroupLayout(PanelErrores);
+        PanelErrores.setLayout(PanelErroresLayout);
+        PanelErroresLayout.setHorizontalGroup(
+            PanelErroresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PanelErroresLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(PanelErroresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PanelErroresLayout.createSequentialGroup()
+                        .addComponent(EtiquetaErrores)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(Errores, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        PanelErroresLayout.setVerticalGroup(
+            PanelErroresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PanelErroresLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(EtiquetaErrores)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Errores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jMenu1.setText("Navegar");
@@ -109,11 +289,19 @@ public class Sintatico extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(28, 28, 28)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(PanelTodo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(PanelCompuesta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(PanelVariables, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(PanelExpresiones, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(PanelComentarios, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(PanelErrores, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(PanelSimples, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(EtiquetaArbol)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Arbol, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -122,10 +310,23 @@ public class Sintatico extends javax.swing.JFrame {
                 .addContainerGap(33, Short.MAX_VALUE)
                 .addComponent(EtiquetaArbol)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(31, 31, 31))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(PanelTodo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(PanelSimples, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(PanelCompuesta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(PanelVariables, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(PanelExpresiones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(PanelComentarios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(PanelErrores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Arbol, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(20, 20, 20))
         );
 
         pack();
@@ -176,14 +377,35 @@ public class Sintatico extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel Arbol;
+    private javax.swing.JComboBox Comentarios;
+    private javax.swing.JComboBox Comentarios1;
+    private javax.swing.JComboBox Compuesta;
+    private javax.swing.JComboBox Errores;
     private javax.swing.JLabel EtiquetaArbol;
+    private javax.swing.JLabel EtiquetaComentarios;
+    private javax.swing.JLabel EtiquetaComentarios1;
+    private javax.swing.JLabel EtiquetaCompuesta;
+    private javax.swing.JLabel EtiquetaErrores;
+    private javax.swing.JLabel EtiquetaExpresiones;
+    private javax.swing.JLabel EtiquetaSimples;
+    private javax.swing.JLabel EtiquetaTodo;
+    private javax.swing.JLabel EtiquetaVariables;
+    private javax.swing.JComboBox Expresiones;
+    private javax.swing.JPanel PanelComentarios;
+    private javax.swing.JPanel PanelComentarios1;
+    private javax.swing.JPanel PanelCompuesta;
+    private javax.swing.JPanel PanelErrores;
+    private javax.swing.JPanel PanelExpresiones;
+    private javax.swing.JPanel PanelSimples;
+    private javax.swing.JPanel PanelTodo;
+    private javax.swing.JPanel PanelVariables;
     private javax.swing.JMenuItem Salir;
-    private javax.swing.JComboBox jComboBox1;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JComboBox Simples;
+    private javax.swing.JComboBox Todo;
+    private javax.swing.JComboBox Variables;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JMenuItem volver;
     // End of variables declaration//GEN-END:variables
 }
