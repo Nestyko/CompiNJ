@@ -33,6 +33,8 @@ public class EcuationParser {
         for (int i = 0; i < tipo_separadores.length; i++) {
             int count = 0;
             Point posicion = buscarIndex(tipo_separadores[i]);
+            //TODO:
+            //Manejar el caso en que los separadores abarquen todo
             while(posicion.x != -1 && posicion.y != -1){           
                 Separador separador = new Separador(tipo_separadores[i], posicion, this.extraer(posicion));
                 count++;
@@ -57,6 +59,13 @@ public class EcuationParser {
     }
     private String[] separar(int index){
         String[] result = new String[2];
+        /*
+        String tokenized = this.ecuacion.data;
+        for(Separador separador : separadores){
+            tokenized = separador.replaceForToken(tokenized);
+            tokenized = separador.replaceForOriginal(tokenized, true);
+        }
+                */
         result[0] = this.ecuacion.data.substring(0, index);
         result[1] = this.ecuacion.data.substring(index+1, this.ecuacion.data.length());
         return result;
@@ -83,6 +92,9 @@ public class EcuationParser {
                 //Agregar al nodo izquierda y derecha
                 //rewrite
                 String[] partes = this.separar(indexReal(index, tokenized));
+                for(String parte: partes){
+                    parte = removerEnvoltorio(parte);
+                }
                 this.ecuacion.left = new Node<String>(partes[0]);
                 this.ecuacion.right = new Node<String>(partes[1]);
                 EcuationParser left = new EcuationParser(this.ecuacion.left);
@@ -96,6 +108,19 @@ public class EcuationParser {
     
     public Node<String> getNode(){
         return this.ecuacion;
+    }
+    
+    public static String removerEnvoltorio(String ecuacion){
+        for(TipoSeparador tipo_separador: tipo_separadores){
+            if(
+                    ecuacion.indexOf(tipo_separador.inicial) == 0 && 
+                    ecuacion.indexOf(tipo_separador.fin) == ecuacion.length()-1){
+                
+                //Remueve los separadores que envuelven toda la ecuacion
+                return ecuacion.substring(1, ecuacion.length()-1); 
+            }
+        }
+        return ecuacion;
     }
     
     

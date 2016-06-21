@@ -16,11 +16,13 @@ public class Separador{
     public String original;
     private int length;
     public Point posicion;
+    private String token;
 
     public Separador(TipoSeparador separador, Point posicion, String original){
         this.separador = separador;
         this.posicion = posicion;
         this.original = original;
+        token = "&" + ((int)(Math.random() * 1000) + 1) + "&";
     }
     
     public int posicionInicial(){
@@ -48,15 +50,23 @@ public class Separador{
     }
     
     public String token(){
-        return "&" + ((int)(Math.random() * 1000) + 1) + "&";
+        return this.token;
     }
     
     public String replaceForToken(String ecuacion){
         return ecuacion.replace(this.original, this.token());
     }
     
+    /**
+     * Genera el string original a partir de una ecuacion con tokens
+     * @param ecuacion ecuacion con tokens (tokenized)
+     * @param surround si la ecuacion completa esta envuelta en separadores se eliminan
+     * @return la ecuacion original.
+     */
     public String replaceForOriginal(String ecuacion){
         return ecuacion.replace(this.token(), this.original);
     }
+    
+    
 
 }
