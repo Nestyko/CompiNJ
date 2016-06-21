@@ -16,11 +16,12 @@ import javax.swing.JComboBox;
  * @author clases
  */
 public class Lexico extends javax.swing.JFrame {
-
+    String texto;
     /**
      * Creates new form Lexico
      */
     public Lexico(String text) {
+        texto = text; 
         initComponents();
         /* 
         Database db = new Database();
@@ -70,8 +71,13 @@ public class Lexico extends javax.swing.JFrame {
     
       for(String a : conte){
             Lista.addItem(a);
+  
+    }
+         
+      if(Cantidad != null){
+            Cantidad.setText(""+Lista.getItemCount());
         }
-      Cantidad.setText(""+Lista.getItemCount());
+      
     }
     
     public Lexico() {
@@ -453,7 +459,7 @@ public class Lexico extends javax.swing.JFrame {
     }//GEN-LAST:event_ErroresActionPerformed
 
     private void SintaticoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SintaticoActionPerformed
-        new Sintatico().setVisible(true);
+        new Sintatico(texto).setVisible(true);
         setVisible(false);// TODO add your handling code here:
     }//GEN-LAST:event_SintaticoActionPerformed
 

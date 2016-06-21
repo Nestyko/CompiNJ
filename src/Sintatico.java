@@ -1,3 +1,7 @@
+
+import analyzers.LexicalAnalyzer;
+import java.util.HashMap;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -14,10 +18,39 @@ public class Sintatico extends javax.swing.JFrame {
     /**
      * Creates new form Sintatico
      */
-    public Sintatico() {
+    public Sintatico(String text) {
         initComponents();
+        Database db = new Database();
+        HashMap<String, ? extends Object> db_map = (HashMap) db.getMap();
+        LexicalAnalyzer lx = new LexicalAnalyzer(db_map);
+        HashMap<String, HashMap> analisis_sintactico = lx.analisys(text);
+        
+        main.lexicoframe.Analisis(analisis_sintactico, "reserved_words" , Todo , null);
+        main.lexicoframe.Analisis(analisis_sintactico, "Simple", Simples, null);
+        main.lexicoframe.Analisis(analisis_sintactico, "Compuesta" , Compuesta , null);
+        ExtraerVaribles(text);
+        mostrarComentarios();
     }
-
+    
+    public void mostrarComentarios(){
+        
+    };
+    
+    public void ExtraerVaribles(String Conte){
+        String[] variables = Conte.split("\n");
+        for (String variable : variables){
+            if(variable.startsWith("declarar")){
+                variable = variable.replaceAll("declarar", "");
+                Variables.addItem(variable);
+            }
+        }
+        
+    }
+    
+    private Sintatico() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -55,7 +88,7 @@ public class Sintatico extends javax.swing.JFrame {
         volver = new javax.swing.JMenuItem();
         Salir = new javax.swing.JMenuItem();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Analisis Sintactico");
 
         Arbol.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -236,7 +269,7 @@ public class Sintatico extends javax.swing.JFrame {
 
         PanelErrores.setBackground(new java.awt.Color(204, 204, 204));
 
-        EtiquetaErrores.setText("Comentarios:");
+        EtiquetaErrores.setText("Errores Sintactico:");
 
         javax.swing.GroupLayout PanelErroresLayout = new javax.swing.GroupLayout(PanelErrores);
         PanelErrores.setLayout(PanelErroresLayout);
@@ -307,7 +340,7 @@ public class Sintatico extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(33, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(EtiquetaArbol)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -379,12 +412,10 @@ public class Sintatico extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Arbol;
     private javax.swing.JComboBox Comentarios;
-    private javax.swing.JComboBox Comentarios1;
     private javax.swing.JComboBox Compuesta;
     private javax.swing.JComboBox Errores;
     private javax.swing.JLabel EtiquetaArbol;
     private javax.swing.JLabel EtiquetaComentarios;
-    private javax.swing.JLabel EtiquetaComentarios1;
     private javax.swing.JLabel EtiquetaCompuesta;
     private javax.swing.JLabel EtiquetaErrores;
     private javax.swing.JLabel EtiquetaExpresiones;
@@ -393,7 +424,6 @@ public class Sintatico extends javax.swing.JFrame {
     private javax.swing.JLabel EtiquetaVariables;
     private javax.swing.JComboBox Expresiones;
     private javax.swing.JPanel PanelComentarios;
-    private javax.swing.JPanel PanelComentarios1;
     private javax.swing.JPanel PanelCompuesta;
     private javax.swing.JPanel PanelErrores;
     private javax.swing.JPanel PanelExpresiones;

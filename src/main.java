@@ -31,6 +31,8 @@ import javax.swing.text.StyledDocument;
 public class main extends javax.swing.JFrame {
 
 
+    static Lexico lexicoframe;
+    
     /**
      * Creates new form NewJFrame
      */
@@ -367,7 +369,9 @@ public class main extends javax.swing.JFrame {
     }//GEN-LAST:event_simbolosActionPerformed
 
     private void lexicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lexicoActionPerformed
-            new Lexico(Entrada.getText()).setVisible(true);       // TODO add your handling code here:
+        lexicoframe =  new Lexico(Entrada.getText());  
+        lexicoframe.setVisible(true);
+           // TODO add your handling code here:
     }//GEN-LAST:event_lexicoActionPerformed
 
     private void todosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_todosActionPerformed
@@ -377,7 +381,7 @@ public class main extends javax.swing.JFrame {
     }//GEN-LAST:event_todosActionPerformed
 
     private void sintacticoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sintacticoActionPerformed
-        new Sintatico().setVisible(true);
+        new Sintatico(Entrada.getText()).setVisible(true);
         setVisible(false);// TODO add your handling code here:
     }//GEN-LAST:event_sintacticoActionPerformed
  

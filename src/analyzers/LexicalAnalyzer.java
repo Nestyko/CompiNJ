@@ -20,7 +20,7 @@ public class LexicalAnalyzer {
     private final HashMap<String, ? extends Object> data;
     private ArrayList<String> clasifications;
     private HashMap<String,HashMap> analysis_data;
-    
+    public static ArrayList<String> comentario;
     /**
      * Creates a new Object with the data provided and generates the corresponding
      * clasifications
@@ -76,6 +76,11 @@ public class LexicalAnalyzer {
      */
     public HashMap<String,HashMap> analisys(String text){
         String[] words = this.getTokens(this.removeComments(text));
+        System.out.print("Salida: {");
+        for (String word : words) {
+            System.out.print(word+" ");
+        }
+        System.out.print("}");
         HashMap<String,HashMap> result = new HashMap<>();
         result.put("Error", new HashMap<>());
         for (String clasification : this.clasifications) {
@@ -180,6 +185,8 @@ public class LexicalAnalyzer {
             offset = text.indexOf(start_comment_token);
             if(offset != -1){
                 int part2_offset = text.indexOf(end_comment_token, offset);
+                String comen = text.substring(offset+2, part2_offset);
+                comentario.add(comen);
                 if(part2_offset == -1){
                     text = text.substring(0, offset);
                     continue;
