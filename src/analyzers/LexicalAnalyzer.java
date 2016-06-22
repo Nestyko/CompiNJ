@@ -21,6 +21,7 @@ public class LexicalAnalyzer {
     private ArrayList<String> clasifications;
     private HashMap<String,HashMap> analysis_data;
     public static ArrayList<String> comentario;
+    public static ArrayList<String> expresiones;
     /**
      * Creates a new Object with the data provided and generates the corresponding
      * clasifications
@@ -148,6 +149,7 @@ public class LexicalAnalyzer {
      */
     public String getOneLine(String text){
         String[] words = this.getTokens(this.removeComments(text));
+        ObtenerExpresiones(removeComments(text));
         String result = "";
         for (String word : words) {
             result += word;
@@ -165,6 +167,7 @@ public class LexicalAnalyzer {
     }
     
     private String removeComments(String text) {
+        comentario=new ArrayList<>();
         String comment_token = "\\\\";
         String start_comment_token = "\\*";
         String end_comment_token = "*\\";
@@ -179,14 +182,40 @@ public class LexicalAnalyzer {
                 }
                 String part1 = text.substring(0, offset);
                 String part2 = text.substring(part2_offset, text.length());
+                comentario.add(text.substring(offset+2,part2_offset));
                 text = part1 + part2;
                 continue;
             }
             offset = text.indexOf(start_comment_token);
             if(offset != -1){
                 int part2_offset = text.indexOf(end_comment_token, offset);
-                String comen = text.substring(offset+2, part2_offset);
-                comentario.add(comen);
+                comentario.add(text.substring(offset+2, part2_offset));
+                if(part2_offset == -1){
+                    text = text.substring(0, offset);
+                    continue;
+                }else{
+                    String part1 = text.substring(0, offset);
+                    String part2 = text.substring(part2_offset+2, text.length());
+                    text = part1 + part2;
+                    continue; 
+                }
+                
+            }
+        }
+        return text;
+      }
+    
+     public String ObtenerExpresiones(String text) {
+        expresiones=new ArrayList<>();
+        String start_expre_token = "mmatini";
+        String end_expre_token = "mmattfin";
+        int offset = 0;
+        while(offset != -1){
+       
+            offset = text.indexOf(start_expre_token);
+            if(offset != -1){
+                int part2_offset = text.indexOf(end_expre_token, offset);
+                expresiones.add(text.substring(offset+8, part2_offset).replaceAll(" ", ""));
                 if(part2_offset == -1){
                     text = text.substring(0, offset);
                     continue;

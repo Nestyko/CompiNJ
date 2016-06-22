@@ -1,7 +1,8 @@
 
 import analyzers.LexicalAnalyzer;
+import java.util.ArrayList;
 import java.util.HashMap;
-
+import javax.swing.JComboBox;
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -29,17 +30,21 @@ public class Sintatico extends javax.swing.JFrame {
         main.lexicoframe.Analisis(analisis_sintactico, "Simple", Simples, null);
         main.lexicoframe.Analisis(analisis_sintactico, "Compuesta" , Compuesta , null);
         ExtraerVaribles(text);
-        mostrarComentarios();
+        mostrar(LexicalAnalyzer.comentario,Comentarios);
+        mostrar(LexicalAnalyzer.expresiones, Expresiones);
     }
     
-    public void mostrarComentarios(){
-        
+    public void mostrar(ArrayList<String> contenido, JComboBox Lista){
+        for (String conte  : contenido){
+            Lista.addItem(conte);
+        }
     };
+    
     
     public void ExtraerVaribles(String Conte){
         String[] variables = Conte.split("\n");
         for (String variable : variables){
-            if(variable.startsWith("declarar")){
+            if(variable.trim().startsWith("declarar")){
                 variable = variable.replaceAll("declarar", "");
                 Variables.addItem(variable);
             }
