@@ -32,6 +32,7 @@ public class Sintatico extends javax.swing.JFrame {
         ExtraerVaribles(text);
         mostrar(LexicalAnalyzer.comentario,Comentarios);
         mostrar(LexicalAnalyzer.expresiones, Expresiones);
+         Errores(text);
     }
     
     public void mostrar(ArrayList<String> contenido, JComboBox Lista){
@@ -40,6 +41,37 @@ public class Sintatico extends javax.swing.JFrame {
         }
     };
     
+    
+    public void Errores(String Conte){
+
+    for (int i=Todo.getItemCount()-1;i>=0;i--){
+        String error = Todo.getItemAt(i).toString();
+        int pos = error.indexOf("=");
+        error = error.substring(0,pos).trim();
+        Conte = Conte.replaceAll(error,"");
+    }
+    
+   for (int i=0;i<Comentarios.getItemCount();i++){
+        String error = Comentarios.getItemAt(i).toString();
+        Conte = Conte.replaceAll(error,"");
+    }
+    
+    for (int i=0;i<Variables.getItemCount();i++){
+        String error = Variables.getItemAt(i).toString();
+        Conte = Conte.replaceAll(error,"");
+    }
+
+    Conte = Conte.replaceAll(" ", "");
+    for (int i=0;i<Expresiones.getItemCount();i++){
+        String error = Expresiones.getItemAt(i).toString();
+        Conte = Conte.replace(error,"");
+    }
+    
+   /* Conte = Conte.replaceAll("\\", "");
+    Conte = Conte.replaceAll("*", "");*/
+    Conte = Conte.replaceAll("\n\n", "");
+    System.out.println(Conte);
+    }
     
     public void ExtraerVaribles(String Conte){
         String[] variables = Conte.split("\n");

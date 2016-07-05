@@ -215,7 +215,7 @@ public class LexicalAnalyzer {
             offset = text.indexOf(start_expre_token);
             if(offset != -1){
                 int part2_offset = text.indexOf(end_expre_token, offset);
-                expresiones.add(text.substring(offset+8, part2_offset).replaceAll(" ", ""));
+                expresiones.add(text.substring(offset+8, part2_offset).replaceAll(" ", "").replaceAll("\n", ""));
                 if(part2_offset == -1){
                     text = text.substring(0, offset);
                     continue;
