@@ -46,7 +46,7 @@ public class Sintatico extends javax.swing.JFrame {
         for (String variable : variables){
             if(variable.trim().startsWith("declarar")){
                 variable = variable.replaceAll("declarar", "");
-                Variables.addItem(variable);
+                Variables.addItem(variable.trim());
             }
         }
         

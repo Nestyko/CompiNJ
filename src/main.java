@@ -12,6 +12,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.UIManager;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyleConstants;
@@ -93,6 +94,7 @@ public class main extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("CompiNJ");
         setBackground(new java.awt.Color(0, 0, 0));
+        setIconImages(null);
         setResizable(false);
 
         Panel_menu.setBackground(new java.awt.Color(51, 51, 51));
@@ -401,6 +403,12 @@ public class main extends javax.swing.JFrame {
                     break;
                 }
             }
+            try{
+            UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
+            //UIManager.setLookAndFeel("com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel");
+            //UIManager.setLookAndFeel("javax.swing.plaf.metal.MetalLookAndFeel");
+            //UIManager.setLookAndFeel("com.sun.java.swing.plaf.motif.MotifLookAndFeel");
+        }catch (Exception e){e.printStackTrace();}
         } catch (ClassNotFoundException ex) {
             java.util.logging.Logger.getLogger(main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
@@ -425,7 +433,8 @@ public class main extends javax.swing.JFrame {
         status = jFileChooser1.showOpenDialog(null);
         if (status == JFileChooser.APPROVE_OPTION) {
             //limpiar el area de texto
-            Entrada.setText("");
+            boolean first=true;
+            Entrada.setText(null);
             String aux = null;
             try {
                 /**
@@ -436,7 +445,13 @@ public class main extends javax.swing.JFrame {
                     FileReader fr = new FileReader(archivo);
                     try (BufferedReader lee = new BufferedReader(fr)) {
                         while ((aux = lee.readLine()) != null) {
+                           if(first){
+                               Entrada.setText(aux);
+                               first=false;
+                           }
+                           else{
                         Entrada.setText(Entrada.getText() + "\n" + aux);
+                           }
                         }
                     }
                     isopen = true; //validamos de que se abrio un archivo
