@@ -157,6 +157,7 @@ public class Lexico extends javax.swing.JFrame {
         Salir = new javax.swing.JMenuItem();
 
         setTitle("Analisis Lexico");
+        setResizable(false);
 
         PanelLetras.setBackground(new java.awt.Color(204, 204, 204));
 
@@ -363,12 +364,13 @@ public class Lexico extends javax.swing.JFrame {
             DiferentesEspaciales2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DiferentesEspaciales2Layout.createSequentialGroup()
                 .addContainerGap(13, Short.MAX_VALUE)
-                .addGroup(DiferentesEspaciales2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(EtiquetaErrores)
-                    .addComponent(Errores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(SinErrores)
-                    .addComponent(DiferentesErrores)
-                    .addComponent(CantidadErrores, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(DiferentesEspaciales2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(CantidadErrores, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(DiferentesEspaciales2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(EtiquetaErrores)
+                        .addComponent(Errores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(SinErrores)
+                        .addComponent(DiferentesErrores)))
                 .addContainerGap())
         );
 

@@ -125,6 +125,7 @@ public class Sintatico extends javax.swing.JFrame {
         Salir = new javax.swing.JMenuItem();
 
         setTitle("Analisis Sintactico");
+        setResizable(false);
 
         EtiquetaArbol.setText("Arbol:");
 

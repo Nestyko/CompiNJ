@@ -59,6 +59,7 @@ public class VistasTablas extends javax.swing.JFrame {
         Salir = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
 
         TablaSimbolos.setBackground(new java.awt.Color(102, 102, 102));
 
