@@ -1,8 +1,15 @@
 
 import analyzers.LexicalAnalyzer;
+import bst.BST_draw;
+import bst.BST_math;
+import bst.BstMathComponent;
+import bst.DisplaySimpleTree;
+import java.awt.Dimension;
 import java.util.ArrayList;
 import java.util.HashMap;
 import javax.swing.JComboBox;
+import javax.swing.JTree;
+import javax.swing.tree.TreeModel;
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -97,7 +104,6 @@ public class Sintatico extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        Arbol = new javax.swing.JPanel();
         EtiquetaArbol = new javax.swing.JLabel();
         PanelTodo = new javax.swing.JPanel();
         EtiquetaTodo = new javax.swing.JLabel();
@@ -120,25 +126,15 @@ public class Sintatico extends javax.swing.JFrame {
         PanelErrores = new javax.swing.JPanel();
         EtiquetaErrores = new javax.swing.JLabel();
         Errores = new javax.swing.JComboBox();
+        ecuacionSeleccionada = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         volver = new javax.swing.JMenuItem();
         Salir = new javax.swing.JMenuItem();
 
         setTitle("Analisis Sintactico");
-
-        Arbol.setBackground(new java.awt.Color(255, 255, 255));
-
-        javax.swing.GroupLayout ArbolLayout = new javax.swing.GroupLayout(Arbol);
-        Arbol.setLayout(ArbolLayout);
-        ArbolLayout.setHorizontalGroup(
-            ArbolLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 283, Short.MAX_VALUE)
-        );
-        ArbolLayout.setVerticalGroup(
-            ArbolLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
 
         EtiquetaArbol.setText("Arbol:");
 
@@ -254,6 +250,12 @@ public class Sintatico extends javax.swing.JFrame {
 
         EtiquetaExpresiones.setText("Expresiones Matematicas:");
 
+        Expresiones.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                ExpresionesItemStateChanged(evt);
+            }
+        });
+
         javax.swing.GroupLayout PanelExpresionesLayout = new javax.swing.GroupLayout(PanelExpresiones);
         PanelExpresiones.setLayout(PanelExpresionesLayout);
         PanelExpresionesLayout.setHorizontalGroup(
@@ -331,6 +333,23 @@ public class Sintatico extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        ecuacionSeleccionada.setEditable(false);
+        ecuacionSeleccionada.setText("jTextField1");
+        ecuacionSeleccionada.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ecuacionSeleccionadaActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setText("Ecuacion Seleccionada");
+
+        jButton1.setText("Mostrar Arbol");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         jMenu1.setText("Navegar");
 
         volver.setText("Volver");
@@ -368,19 +387,30 @@ public class Sintatico extends javax.swing.JFrame {
                         .addComponent(PanelComentarios, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(PanelErrores, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(PanelSimples, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(EtiquetaArbol)
-                    .addComponent(Arbol, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
+                        .addComponent(EtiquetaArbol)
+                        .addGap(253, 253, 253))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(ecuacionSeleccionada, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel1)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(90, 90, 90)
+                                .addComponent(jButton1)))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(EtiquetaArbol)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(PanelTodo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -395,7 +425,12 @@ public class Sintatico extends javax.swing.JFrame {
                         .addComponent(PanelComentarios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(PanelErrores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(Arbol, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(7, 7, 7)
+                        .addComponent(ecuacionSeleccionada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton1)))
                 .addGap(20, 20, 20))
         );
 
@@ -410,6 +445,25 @@ public class Sintatico extends javax.swing.JFrame {
     private void volverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_volverActionPerformed
             setVisible(false);  // TODO add your handling code here:
     }//GEN-LAST:event_volverActionPerformed
+
+    private void ExpresionesItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_ExpresionesItemStateChanged
+        if(evt.getStateChange() == 1){
+            String ecuacion_string = (String) evt.getItem();
+            ecuacionSeleccionada.setText(ecuacion_string);
+            
+        }
+    }//GEN-LAST:event_ExpresionesItemStateChanged
+
+    private void ecuacionSeleccionadaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ecuacionSeleccionadaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ecuacionSeleccionadaActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        String ecuacion_string = ecuacionSeleccionada.getText();
+        BstMathComponent ecuacion = new BstMathComponent(ecuacion_string);
+        BST_draw ventana_arbol = new BST_draw(ecuacion);
+        ventana_arbol.setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -447,7 +501,6 @@ public class Sintatico extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel Arbol;
     private javax.swing.JComboBox Comentarios;
     private javax.swing.JComboBox Compuesta;
     private javax.swing.JComboBox Errores;
@@ -471,6 +524,9 @@ public class Sintatico extends javax.swing.JFrame {
     private javax.swing.JComboBox Simples;
     private javax.swing.JComboBox Todo;
     private javax.swing.JComboBox Variables;
+    private javax.swing.JTextField ecuacionSeleccionada;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem volver;

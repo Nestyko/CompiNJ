@@ -27,8 +27,8 @@ public class Database {
     
     public Database(){
         this.host = "jdbc:mysql://localhost:3306/compiler";
-        this.username = "root";
-        this.password = ""; //Hay que cambiarlo a "" para la pc de urbe
+        this.username = "nestyko";
+        this.password = "31081994"; //Hay que cambiarlo a "" para la pc de urbe
         connect();
     }
     

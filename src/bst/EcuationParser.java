@@ -26,26 +26,27 @@ public class EcuationParser {
     
     EcuationParser(Node ecuacion){
         this.ecuacion = ecuacion;
-        this.parse();
+        this.evaluar(this.replaceForTokens(this.ecuacion.data));
     }
     
-    private void parse(){
-        for (int i = 0; i < tipo_separadores.length; i++) {
-            int count = 0;
-            Point posicion = buscarIndex(tipo_separadores[i]);
-            //TODO:
-            //Manejar el caso en que los separadores abarquen todo
-            while(posicion.x != -1 && posicion.y != -1){           
-                Separador separador = new Separador(tipo_separadores[i], posicion, this.extraer(posicion));
-                count++;
-                separadores.add(separador);
-                this.evaluar(separador.replaceForToken(this.ecuacion.data));
-                posicion = buscarIndex(tipo_separadores[i]);
-                return;
+    private String replaceForTokens(String ecuacion){
+        Point posicion = null;
+        TipoSeparador ts = null;
+        for(TipoSeparador tipo: tipo_separadores){
+            ts = tipo;
+            posicion = buscarIndex(ecuacion,ts);
+            if(posicion.x != -1 && posicion.y != -1){
+                break;
             }
         }
-        this.evaluar(this.ecuacion.data);
+        if(posicion.x == -1 && posicion.y == -1){
+            return ecuacion;
+        }
+        Separador separador = new Separador(ts, posicion, this.extraer(ecuacion, posicion));
+        this.separadores.add(separador);
+        return replaceForTokens(separador.replaceForToken(ecuacion));
     }
+    
     
     private Point buscarIndex(TipoSeparador tipo_separador){
         int index_inicial = this.ecuacion.data.indexOf(tipo_separador.inicial);
@@ -56,29 +57,45 @@ public class EcuationParser {
         return new Point(index_inicial, index_final);
     }
     
+    private Point buscarIndex(String ecuacion, TipoSeparador tipo_separador){
+        int index_inicial = ecuacion.indexOf(tipo_separador.inicial);
+        int index_final = ecuacion.indexOf(tipo_separador.fin);
+        if(!(index_inicial != -1 && index_final != -1)){
+            System.out.println("Error en la ecuacion:" + ecuacion);
+        }
+        return new Point(index_inicial, index_final);
+    }
+    
     private String extraer(Point posicion){
         return this.ecuacion.data.substring(posicion.x, posicion.y+1);
     }
-    private String[] separar(int index){
+    
+    private String extraer(String ecuacion, Point posicion){
+        return ecuacion.substring(posicion.x, posicion.y+1);
+    }
+    
+    private String[] separar(int index, String tokenized){
         String[] result = new String[2];
-        /*
-        String tokenized = this.ecuacion.data;
         for(Separador separador : separadores){
-            tokenized = separador.replaceForToken(tokenized);
-            tokenized = separador.replaceForOriginal(tokenized, true);
+            tokenized = separador.replaceForOriginal(tokenized);
         }
-                */
-        result[0] = this.ecuacion.data.substring(0, index);
-        result[1] = this.ecuacion.data.substring(index+1, this.ecuacion.data.length());
+        result[0] = tokenized.substring(0, index);
+        result[1] = tokenized.substring(index+1, tokenized.length());
         return result;
     }   
     
     private int indexReal(int index, String tokenized){
         String operador = tokenized.charAt(index)+"";
+        int initial_index = index;
+        String original = tokenized;
+        for (Separador separador: separadores){
+            original = separador.replaceForOriginal(original);
+        }
+        int op_index = original.indexOf(operador);
         for(Separador separador : separadores){
-            if(index > tokenized.indexOf(separador.token())){
-                separador.replaceForOriginal(tokenized);
-                index = tokenized.indexOf(operador);
+            if(initial_index > tokenized.indexOf(separador.token())){
+                //tokenized = separador.replaceForOriginal(tokenized);
+                index += separador.length();
             }
         }
         return index;
@@ -93,7 +110,7 @@ public class EcuationParser {
                 //Separar
                 //Agregar al nodo izquierda y derecha
                 //rewrite
-                String[] partes = this.separar(indexReal(index, tokenized));
+                String[] partes = this.separar(indexReal(index, tokenized), tokenized);
                 for(int i = 0; i < partes.length;i++){
                     partes[i] = removerEnvoltorio(partes[i]);
                 }
@@ -114,13 +131,19 @@ public class EcuationParser {
     
     public static String removerEnvoltorio(String ecuacion){
         for(TipoSeparador tipo_separador: tipo_separadores){
+            int inicio = ecuacion.indexOf(tipo_separador.inicial);
+            int fin = ecuacion.indexOf(tipo_separador.fin);
             if(
-                    ecuacion.indexOf(tipo_separador.inicial) == 0 && 
-                    ecuacion.indexOf(tipo_separador.fin) == ecuacion.length()-1){
+                    inicio == 0 && 
+                    fin == ecuacion.length()-1){
                 
                 //Remueve los separadores que envuelven toda la ecuacion
                 return ecuacion.substring(1, ecuacion.length()-1); 
-            }
+            }/*else if(inicio == 0){
+                return ecuacion.substring(1, ecuacion.length());
+            }else if(fin == ecuacion.length()-1){
+                return ecuacion.substring(0, ecuacion.length()-1);
+            }*/
         }
         return ecuacion;
     }

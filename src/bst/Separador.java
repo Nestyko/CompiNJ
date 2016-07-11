@@ -42,12 +42,9 @@ public class Separador{
     }
     
     public int length(){
-        return original.length();
+        return original.length()-this.token.length();
     }
     
-    public int lengthReemplazada() {
-        return original.length() - this.token().length();
-    }
     
     public String token(){
         return this.token;

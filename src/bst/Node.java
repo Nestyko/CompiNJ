@@ -5,6 +5,7 @@
  */
 package bst;
 
+
 /**
  *
  * @author nestyko
@@ -13,6 +14,7 @@ public class Node<T>
    {
       public T data;
       public Node<T> left, right;
+      int xpos, ypos;
 
       public Node(T data, Node<T> l, Node<T> r)
       {

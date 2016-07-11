@@ -6,6 +6,8 @@
 package bst;
 
 
+
+
 /**
  *
  * @author nestyko
@@ -17,6 +19,7 @@ public class BST_math extends BST{
         this.root = new Node<String>(ecuation);
         EcuationParser parser = new EcuationParser(this.root);
         this.root = parser.getNode();
+        System.out.print(this.root.data);
     }
     
     public static void main(String[] args){
