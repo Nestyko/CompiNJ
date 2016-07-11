@@ -28,6 +28,7 @@ public class Sintatico extends javax.swing.JFrame {
      */
     public Sintatico(String text) {
         initComponents();
+	SinErrores.setVisible(false);
         Database db = new Database();
         HashMap<String, ? extends Object> db_map = (HashMap) db.getMap();
         LexicalAnalyzer lx = new LexicalAnalyzer(db_map);
@@ -37,9 +38,10 @@ public class Sintatico extends javax.swing.JFrame {
         main.lexicoframe.Analisis(analisis_sintactico, "Simple", Simples, null);
         main.lexicoframe.Analisis(analisis_sintactico, "Compuesta" , Compuesta , null);
         ExtraerVaribles(text);
-        mostrar(LexicalAnalyzer.comentario,Comentarios);
+	Errores(lx.GetError(text));
+        mostrar(LexicalAnalyzer.comentario, Comentarios);
         mostrar(LexicalAnalyzer.expresiones, Expresiones);
-         Errores(text);
+
     }
     
     public void mostrar(ArrayList<String> contenido, JComboBox Lista){
@@ -50,34 +52,21 @@ public class Sintatico extends javax.swing.JFrame {
     
     
     public void Errores(String Conte){
-
-    for (int i=Todo.getItemCount()-1;i>=0;i--){
-        String error = Todo.getItemAt(i).toString();
-        int pos = error.indexOf("=");
-        error = error.substring(0,pos).trim();
-        Conte = Conte.replaceAll(error,"");
-    }
-    
-   for (int i=0;i<Comentarios.getItemCount();i++){
-        String error = Comentarios.getItemAt(i).toString();
-        Conte = Conte.replaceAll(error,"");
-    }
-    
     for (int i=0;i<Variables.getItemCount();i++){
         String error = Variables.getItemAt(i).toString();
         Conte = Conte.replaceAll(error,"");
     }
-
-    Conte = Conte.replaceAll(" ", "");
-    for (int i=0;i<Expresiones.getItemCount();i++){
-        String error = Expresiones.getItemAt(i).toString();
-        Conte = Conte.replace(error,"");
-    }
-    
-   /* Conte = Conte.replaceAll("\\", "");
-    Conte = Conte.replaceAll("*", "");*/
     Conte = Conte.replaceAll("\n\n", "");
-    System.out.println(Conte);
+    String[] Error = Conte.split("\n");
+    if (Error.length>0){
+	for (String error : Error){
+	    if(!"".equals(error))
+	    Errores.addItem(error);
+	}}
+	else{
+	    Errores.setVisible(false);
+	    SinErrores.setVisible(true);
+	}
     }
     
     public void ExtraerVaribles(String Conte){
@@ -126,6 +115,7 @@ public class Sintatico extends javax.swing.JFrame {
         PanelErrores = new javax.swing.JPanel();
         EtiquetaErrores = new javax.swing.JLabel();
         Errores = new javax.swing.JComboBox();
+        SinErrores = new javax.swing.JLabel();
         ecuacionSeleccionada = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
@@ -310,6 +300,8 @@ public class Sintatico extends javax.swing.JFrame {
 
         EtiquetaErrores.setText("Errores Sintactico:");
 
+        SinErrores.setText("No Hay Errores");
+
         javax.swing.GroupLayout PanelErroresLayout = new javax.swing.GroupLayout(PanelErrores);
         PanelErrores.setLayout(PanelErroresLayout);
         PanelErroresLayout.setHorizontalGroup(
@@ -319,9 +311,11 @@ public class Sintatico extends javax.swing.JFrame {
                 .addGroup(PanelErroresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(PanelErroresLayout.createSequentialGroup()
                         .addComponent(EtiquetaErrores)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(Errores, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(PanelErroresLayout.createSequentialGroup()
+                        .addComponent(SinErrores, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(Errores, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         PanelErroresLayout.setVerticalGroup(
             PanelErroresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -329,7 +323,9 @@ public class Sintatico extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(EtiquetaErrores)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Errores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(PanelErroresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Errores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(SinErrores))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -522,6 +518,7 @@ public class Sintatico extends javax.swing.JFrame {
     private javax.swing.JPanel PanelVariables;
     private javax.swing.JMenuItem Salir;
     private javax.swing.JComboBox Simples;
+    private javax.swing.JLabel SinErrores;
     private javax.swing.JComboBox Todo;
     private javax.swing.JComboBox Variables;
     private javax.swing.JTextField ecuacionSeleccionada;

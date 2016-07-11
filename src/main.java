@@ -384,7 +384,7 @@ public class main extends javax.swing.JFrame {
 
     private void sintacticoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sintacticoActionPerformed
         new Sintatico(Entrada.getText()).setVisible(true);
-        //this.setVisible(false);// TODO add your handling code here:
+	// TODO add your handling code here:
     }//GEN-LAST:event_sintacticoActionPerformed
  
     /**

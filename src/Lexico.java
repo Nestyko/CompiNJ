@@ -23,6 +23,7 @@ public class Lexico extends javax.swing.JFrame {
     public Lexico(String text) {
         texto = text; 
         initComponents();
+	SinErrores.setVisible(false);
         /* 
         Database db = new Database();
         HashMap<String, ? extends Object> db_map = (HashMap) db.getMap();
@@ -57,6 +58,8 @@ public class Lexico extends javax.swing.JFrame {
         if (Errores.getItemCount()==0){
             Sintatico.setEnabled(true);
             main.sintactico.setEnabled(true);
+	    SinErrores.setVisible(true);
+	    Errores.setVisible(false);
         }else{
             Sintatico.setEnabled(false);
             main.sintactico.setEnabled(false);
@@ -143,6 +146,7 @@ public class Lexico extends javax.swing.JFrame {
         Errores = new javax.swing.JComboBox();
         CantidadErrores = new javax.swing.JLabel();
         DiferentesErrores = new javax.swing.JLabel();
+        SinErrores = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         Pantalla = new javax.swing.JTextArea();
         CantidadEspacios = new javax.swing.JLabel();
@@ -271,22 +275,22 @@ public class Lexico extends javax.swing.JFrame {
                 .addComponent(EtiquetaSeparadores, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Separadores, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(44, 44, 44)
+                .addGap(63, 63, 63)
                 .addComponent(DiferentesSeparadores, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(CantidadSeparadores, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(44, Short.MAX_VALUE))
+                .addContainerGap(49, Short.MAX_VALUE))
         );
         PanelSeparadoresLayout.setVerticalGroup(
             PanelSeparadoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelSeparadoresLayout.createSequentialGroup()
                 .addContainerGap(13, Short.MAX_VALUE)
                 .addGroup(PanelSeparadoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(DiferentesSeparadores)
                     .addComponent(CantidadSeparadores, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(PanelSeparadoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(EtiquetaSeparadores)
-                        .addComponent(Separadores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(Separadores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(DiferentesSeparadores)))
                 .addContainerGap())
         );
 
@@ -305,22 +309,22 @@ public class Lexico extends javax.swing.JFrame {
                 .addComponent(EtiquetaEspeciales, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Especiales, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(44, 44, 44)
+                .addGap(64, 64, 64)
                 .addComponent(DiferentesEspeciales, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(CantidadEspeciales, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(48, Short.MAX_VALUE))
         );
         PanelEspecialesLayout.setVerticalGroup(
             PanelEspecialesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelEspecialesLayout.createSequentialGroup()
                 .addContainerGap(13, Short.MAX_VALUE)
                 .addGroup(PanelEspecialesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(DiferentesEspeciales)
                     .addComponent(CantidadEspeciales, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(PanelEspecialesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(EtiquetaEspeciales)
-                        .addComponent(Especiales, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(Especiales, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(DiferentesEspeciales)))
                 .addContainerGap())
         );
 
@@ -336,6 +340,8 @@ public class Lexico extends javax.swing.JFrame {
 
         DiferentesErrores.setText("Errores Diferentes:");
 
+        SinErrores.setText("Sin Errores");
+
         javax.swing.GroupLayout DiferentesEspaciales2Layout = new javax.swing.GroupLayout(DiferentesEspaciales2);
         DiferentesEspaciales2.setLayout(DiferentesEspaciales2Layout);
         DiferentesEspaciales2Layout.setHorizontalGroup(
@@ -344,23 +350,25 @@ public class Lexico extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(EtiquetaErrores, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Errores, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(44, 44, 44)
+                .addComponent(SinErrores, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Errores, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(64, 64, 64)
                 .addComponent(DiferentesErrores, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(CantidadErrores, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(50, 50, 50))
         );
         DiferentesEspaciales2Layout.setVerticalGroup(
             DiferentesEspaciales2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DiferentesEspaciales2Layout.createSequentialGroup()
                 .addContainerGap(13, Short.MAX_VALUE)
-                .addGroup(DiferentesEspaciales2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(DiferentesEspaciales2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(EtiquetaErrores)
+                    .addComponent(Errores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(SinErrores)
                     .addComponent(DiferentesErrores)
-                    .addComponent(CantidadErrores, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(DiferentesEspaciales2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(EtiquetaErrores)
-                        .addComponent(Errores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(CantidadErrores, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -530,6 +538,7 @@ public class Lexico extends javax.swing.JFrame {
     private javax.swing.JTextArea Pantalla;
     private javax.swing.JMenuItem Salir;
     private javax.swing.JComboBox Separadores;
+    private javax.swing.JLabel SinErrores;
     private javax.swing.JMenuItem Sintatico;
     private javax.swing.JMenuItem Volver;
     private javax.swing.JMenu jMenu1;

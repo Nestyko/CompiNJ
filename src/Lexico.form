@@ -307,11 +307,11 @@
                   <Component id="EtiquetaSeparadores" min="-2" pref="80" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="Separadores" min="-2" pref="71" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="63" max="-2" attributes="0"/>
                   <Component id="DiferentesSeparadores" min="-2" pref="145" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="CantidadSeparadores" min="-2" pref="22" max="-2" attributes="0"/>
-                  <EmptySpace pref="44" max="32767" attributes="0"/>
+                  <EmptySpace pref="49" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -320,11 +320,11 @@
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace pref="13" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="DiferentesSeparadores" min="-2" max="-2" attributes="0"/>
                       <Component id="CantidadSeparadores" min="-2" pref="18" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="EtiquetaSeparadores" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="Separadores" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="DiferentesSeparadores" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
@@ -369,11 +369,11 @@
                   <Component id="EtiquetaEspeciales" min="-2" pref="80" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="Especiales" min="-2" pref="71" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="64" max="-2" attributes="0"/>
                   <Component id="DiferentesEspeciales" min="-2" pref="145" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="CantidadEspeciales" min="-2" pref="22" max="-2" attributes="0"/>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace pref="48" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -382,11 +382,11 @@
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace pref="13" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="DiferentesEspeciales" min="-2" max="-2" attributes="0"/>
                       <Component id="CantidadEspeciales" min="-2" pref="18" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="EtiquetaEspeciales" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="Especiales" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="DiferentesEspeciales" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
@@ -427,15 +427,17 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace max="-2" attributes="0"/>
+                  <EmptySpace min="-2" max="-2" attributes="0"/>
                   <Component id="EtiquetaErrores" min="-2" pref="80" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="Errores" min="-2" pref="71" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" max="-2" attributes="0"/>
+                  <Component id="SinErrores" pref="0" max="32767" attributes="0"/>
+                  <EmptySpace min="-2" max="-2" attributes="0"/>
+                  <Component id="Errores" max="32767" attributes="0"/>
+                  <EmptySpace min="-2" pref="64" max="-2" attributes="0"/>
                   <Component id="DiferentesErrores" min="-2" pref="145" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="CantidadErrores" min="-2" pref="22" max="-2" attributes="0"/>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -443,13 +445,12 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace pref="13" max="32767" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="DiferentesErrores" min="-2" max="-2" attributes="0"/>
-                      <Component id="CantidadErrores" min="-2" pref="18" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="EtiquetaErrores" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="Errores" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="EtiquetaErrores" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="Errores" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="SinErrores" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="DiferentesErrores" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="CantidadErrores" alignment="1" min="-2" pref="18" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -477,6 +478,11 @@
         <Component class="javax.swing.JLabel" name="DiferentesErrores">
           <Properties>
             <Property name="text" type="java.lang.String" value="Errores Diferentes:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="SinErrores">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Sin Errores"/>
           </Properties>
         </Component>
       </SubComponents>

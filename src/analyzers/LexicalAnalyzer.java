@@ -149,7 +149,6 @@ public class LexicalAnalyzer {
      */
     public String getOneLine(String text){
         String[] words = this.getTokens(this.removeComments(text));
-        ObtenerExpresiones(removeComments(text));
         String result = "";
         for (String word : words) {
             result += word;
@@ -165,6 +164,24 @@ public class LexicalAnalyzer {
         }
         return result;
     }
+    
+   public String GetError(String text){
+	String[] words = this.getTokens(this.ObtenerExpresiones(this.removeComments(text)));
+        String result = "";
+        for (String word : words) {
+            result += word+"\n";
+        }
+	result = result.replace("mmattfin", ""); 
+        if(this.analysis_data != null){
+            System.out.println(this.analysis_data);
+            HashMap<String, Integer> errors = (HashMap<String, Integer>)analysis_data.get("reserved_words");
+            for (Map.Entry<String, Integer> entry : errors.entrySet()) {
+                String key = entry.getKey();
+                result = result.replace(key, ""); 
+            }
+        }
+        return result;
+   }
     
     private String removeComments(String text) {
         comentario=new ArrayList<>();
@@ -202,7 +219,7 @@ public class LexicalAnalyzer {
                 
             }
         }
-        return text;
+	return text;
       }
     
      public String ObtenerExpresiones(String text) {
@@ -212,16 +229,16 @@ public class LexicalAnalyzer {
         int offset = 0;
         while(offset != -1){
        
-            offset = text.indexOf(start_expre_token);
+            offset = text.indexOf(start_expre_token,offset+1);
             if(offset != -1){
-                int part2_offset = text.indexOf(end_expre_token, offset);
-                expresiones.add(text.substring(offset+8, part2_offset).replaceAll(" ", "").replaceAll("\n", ""));
+                 int part2_offset = text.indexOf(end_expre_token, offset);
+                expresiones.add(text.substring(offset+7, part2_offset).replaceAll(" ", "").replaceAll("\n", ""));
                 if(part2_offset == -1){
                     text = text.substring(0, offset);
                     continue;
                 }else{
-                    String part1 = text.substring(0, offset);
-                    String part2 = text.substring(part2_offset+2, text.length());
+                    String part1 = text.substring(0, offset+7);
+                    String part2 = text.substring(part2_offset, text.length());
                     text = part1 + part2;
                     continue; 
                 }
