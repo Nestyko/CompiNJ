@@ -76,9 +76,7 @@ public class EcuationParser {
     
     private String[] separar(int index, String tokenized){
         String[] result = new String[2];
-        for(Separador separador : separadores){
-            tokenized = separador.replaceForOriginal(tokenized);
-        }
+        tokenized = this.replaceForOriginal(tokenized);
         result[0] = tokenized.substring(0, index);
         result[1] = tokenized.substring(index+1, tokenized.length());
         return result;
@@ -87,18 +85,44 @@ public class EcuationParser {
     private int indexReal(int index, String tokenized){
         String operador = tokenized.charAt(index)+"";
         int initial_index = index;
-        String original = tokenized;
-        for (Separador separador: separadores){
-            original = separador.replaceForOriginal(original);
-        }
-        int op_index = original.indexOf(operador);
-        for(Separador separador : separadores){
-            if(initial_index > tokenized.indexOf(separador.token())){
-                //tokenized = separador.replaceForOriginal(tokenized);
-                index += separador.length();
+        while(this.isTokenized(tokenized, index)){
+            for(Separador separador : separadores){
+                if(index > tokenized.indexOf(separador.token())){
+                    tokenized = separador.replaceForOriginal(tokenized);
+                    index += separador.length();
+                }
             }
         }
+        
         return index;
+    }
+    
+    private boolean isTokenized(String ecuacion){
+        for(Separador separador: this.separadores){
+            if(ecuacion.indexOf(separador.token()) != -1){
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    private boolean isTokenized(String ecuacion,int index){
+        for(Separador separador: this.separadores){
+            int position = ecuacion.indexOf(separador.token());
+            if(position < index && position != -1){
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    private String replaceForOriginal(String tokenized){
+        while(this.isTokenized(tokenized)){
+            for(Separador separador: this.separadores){
+                tokenized = separador.replaceForOriginal(tokenized);
+            }
+        }
+        return tokenized;
     }
     
     private boolean evaluar(String tokenized){
