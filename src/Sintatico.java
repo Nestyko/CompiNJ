@@ -26,6 +26,7 @@ public class Sintatico extends javax.swing.JFrame {
     /**
      * Creates new form Sintatico
      */
+    ArrayList<String> AMostrar = new ArrayList<>();
     public Sintatico(String text) {
         initComponents();
 	SinErrores.setVisible(false);
@@ -37,10 +38,16 @@ public class Sintatico extends javax.swing.JFrame {
         main.lexicoframe.Analisis(analisis_sintactico, "reserved_words" , Todo , null);
         main.lexicoframe.Analisis(analisis_sintactico, "Simple", Simples, null);
         main.lexicoframe.Analisis(analisis_sintactico, "Compuesta" , Compuesta , null);
-        ExtraerVaribles(text);
+        ArrayList<String> AVariables = new ArrayList<>();
+        Extraer(text,"declarar",AVariables);
+        mostrar(AVariables, Variables);
+        Extraer(text,"mostrar",AMostrar);
 	Errores(lx.GetError(text));
         mostrar(LexicalAnalyzer.comentario, Comentarios);
         mostrar(LexicalAnalyzer.expresiones, Expresiones);
+        if(Expresiones.getItemCount()!=0){
+                MostrarArbol.setEnabled(true);
+        }
 
     }
     
@@ -56,6 +63,14 @@ public class Sintatico extends javax.swing.JFrame {
         String error = Variables.getItemAt(i).toString();
         Conte = Conte.replaceAll(error,"");
     }
+    
+    for(String mostrar : AMostrar){
+        String[] replace = mostrar.split(" ");
+        for (int i=0;i<replace.length;i++){
+        Conte = Conte.replaceAll(replace[i],"");
+    }
+    }
+              
     Conte = Conte.replaceAll("\n\n", "");
     String[] Error = Conte.split("\n");
     if (Error.length>0){
@@ -69,12 +84,12 @@ public class Sintatico extends javax.swing.JFrame {
 	}
     }
     
-    public void ExtraerVaribles(String Conte){
+    public void Extraer(String Conte, String palabra, ArrayList<String> Array){
         String[] variables = Conte.split("\n");
         for (String variable : variables){
-            if(variable.trim().startsWith("declarar")){
-                variable = variable.replaceAll("declarar", "");
-                Variables.addItem(variable.trim());
+            if(variable.trim().startsWith(palabra)){
+                variable = variable.replaceAll(palabra, "");
+                Array.add(variable.trim());
             }
         }
         
@@ -118,7 +133,7 @@ public class Sintatico extends javax.swing.JFrame {
         SinErrores = new javax.swing.JLabel();
         ecuacionSeleccionada = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        MostrarArbol = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         volver = new javax.swing.JMenuItem();
@@ -331,7 +346,6 @@ public class Sintatico extends javax.swing.JFrame {
         );
 
         ecuacionSeleccionada.setEditable(false);
-        ecuacionSeleccionada.setText("jTextField1");
         ecuacionSeleccionada.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ecuacionSeleccionadaActionPerformed(evt);
@@ -340,10 +354,11 @@ public class Sintatico extends javax.swing.JFrame {
 
         jLabel1.setText("Ecuacion Seleccionada");
 
-        jButton1.setText("Mostrar Arbol");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        MostrarArbol.setText("Mostrar Arbol");
+        MostrarArbol.setEnabled(false);
+        MostrarArbol.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                MostrarArbolActionPerformed(evt);
             }
         });
 
@@ -398,7 +413,7 @@ public class Sintatico extends javax.swing.JFrame {
                                     .addComponent(jLabel1)))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(90, 90, 90)
-                                .addComponent(jButton1)))
+                                .addComponent(MostrarArbol)))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
@@ -427,7 +442,7 @@ public class Sintatico extends javax.swing.JFrame {
                         .addGap(7, 7, 7)
                         .addComponent(ecuacionSeleccionada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton1)))
+                        .addComponent(MostrarArbol)))
                 .addGap(20, 20, 20))
         );
 
@@ -455,12 +470,12 @@ public class Sintatico extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_ecuacionSeleccionadaActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void MostrarArbolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MostrarArbolActionPerformed
         String ecuacion_string = ecuacionSeleccionada.getText();
         BstMathComponent ecuacion = new BstMathComponent(ecuacion_string);
         BST_draw ventana_arbol = new BST_draw(ecuacion);
         ventana_arbol.setVisible(true);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_MostrarArbolActionPerformed
 
     /**
      * @param args the command line arguments
@@ -510,6 +525,7 @@ public class Sintatico extends javax.swing.JFrame {
     private javax.swing.JLabel EtiquetaTodo;
     private javax.swing.JLabel EtiquetaVariables;
     private javax.swing.JComboBox Expresiones;
+    private javax.swing.JButton MostrarArbol;
     private javax.swing.JPanel PanelComentarios;
     private javax.swing.JPanel PanelCompuesta;
     private javax.swing.JPanel PanelErrores;
@@ -523,7 +539,6 @@ public class Sintatico extends javax.swing.JFrame {
     private javax.swing.JComboBox Todo;
     private javax.swing.JComboBox Variables;
     private javax.swing.JTextField ecuacionSeleccionada;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
