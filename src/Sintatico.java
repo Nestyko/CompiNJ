@@ -67,7 +67,7 @@ public class Sintatico extends javax.swing.JFrame {
     for(String mostrar : AMostrar){
         String[] replace = mostrar.split(" ");
         for (int i=0;i<replace.length;i++){
-        Conte = Conte.replaceAll(replace[i],"");
+        Conte = Conte.replaceFirst(replace[i],"");
     }
     }
               
