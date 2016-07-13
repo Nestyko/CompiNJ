@@ -63,6 +63,9 @@ public class BST <T extends Comparable<T>> implements Iterable<T>
 
    public Node<T> root;
    private Comparator<T> comparator;
+   private String preorder = "";
+   private String postorder = "";
+   private String inorder = "";
 
    public BST()
    {
@@ -192,31 +195,52 @@ public class BST <T extends Comparable<T>> implements Iterable<T>
  *
  **************************************************/
 
-   public void preOrderTraversal()
+   public String preOrderTraversal()
    {
       preOrderHelper(root);
+      return this.preorder;
    }
    private void preOrderHelper(Node r)
    {
+
       if (r != null)
       {
+         this.preorder += r+" ";
          System.out.print(r+" ");
          preOrderHelper(r.left);
          preOrderHelper(r.right);
       }
    }
 
-   public void inOrderTraversal()
+   public String inOrderTraversal()
    {
       inOrderHelper(root);
+      return this.inorder;
    }
    private void inOrderHelper(Node r)
    {
       if (r != null)
       {
          inOrderHelper(r.left);
+         this.inorder = r+" ";
          System.out.print(r+" ");
          inOrderHelper(r.right);
+      }
+   }
+   
+   public String postOrderTraversal()
+   {
+      postOrderHelper(root);
+      return this.postorder;
+   }
+   private void postOrderHelper(Node r)
+   {
+      if (r != null)
+      {
+         postOrderHelper(r.left);
+         postOrderHelper(r.right);
+         this.postorder = r+" ";
+         System.out.print(r+" ");
       }
    }
 
