@@ -27,6 +27,7 @@ public class Sintatico extends javax.swing.JFrame {
      * Creates new form Sintatico
      */
     ArrayList<String> AMostrar = new ArrayList<>();
+    ArrayList<String> APrograma = new ArrayList<>();
     public Sintatico(String text) {
         initComponents();
 	SinErrores.setVisible(false);
@@ -42,6 +43,7 @@ public class Sintatico extends javax.swing.JFrame {
         Extraer(text,"declarar",AVariables);
         mostrar(AVariables, Variables);
         Extraer(text,"mostrar",AMostrar);
+        Extraer(text,"programa",APrograma);
 	Errores(lx.GetError(text));
         mostrar(LexicalAnalyzer.comentario, Comentarios);
         mostrar(LexicalAnalyzer.expresiones, Expresiones);
@@ -70,6 +72,13 @@ public class Sintatico extends javax.swing.JFrame {
         Conte = Conte.replaceFirst(replace[i],"");
     }
     }
+    for(String programa : APrograma){
+        String[] replace = programa.split(" ");
+        for (int i=0;i<replace.length;i++){
+        Conte = Conte.replaceFirst(replace[i],"");
+    }
+    }
+    
               
     Conte = Conte.replaceAll("\n\n", "");
     String[] Error = Conte.split("\n");
