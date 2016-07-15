@@ -242,6 +242,12 @@ public class main extends javax.swing.JFrame {
         analisis.add(sintactico);
 
         semantico.setText("semantico");
+        semantico.setEnabled(false);
+        semantico.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                semanticoActionPerformed(evt);
+            }
+        });
         analisis.add(semantico);
 
         todos.setText("todos");
@@ -386,6 +392,10 @@ public class main extends javax.swing.JFrame {
         new Sintatico(Entrada.getText()).setVisible(true);
 	// TODO add your handling code here:
     }//GEN-LAST:event_sintacticoActionPerformed
+
+    private void semanticoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_semanticoActionPerformed
+            new semantico(Entrada.getText()).setVisible(true);        // TODO add your handling code here:
+    }//GEN-LAST:event_semanticoActionPerformed
  
     /**
      * @param args the command line arguments
@@ -542,7 +552,7 @@ public class main extends javax.swing.JFrame {
     private javax.swing.JMenuItem lexico;
     private javax.swing.JButton paste;
     private javax.swing.JMenuItem salir;
-    private javax.swing.JMenuItem semantico;
+    public static javax.swing.JMenuItem semantico;
     private javax.swing.JMenuItem simbolos;
     public static javax.swing.JMenuItem sintactico;
     private javax.swing.JMenuItem todos;
