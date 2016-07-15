@@ -222,7 +222,7 @@ public class BST <T extends Comparable<T>> implements Iterable<T>
       if (r != null)
       {
          inOrderHelper(r.left);
-         this.inorder = r+" ";
+         this.inorder += r+" ";
          System.out.print(r+" ");
          inOrderHelper(r.right);
       }
@@ -239,7 +239,7 @@ public class BST <T extends Comparable<T>> implements Iterable<T>
       {
          postOrderHelper(r.left);
          postOrderHelper(r.right);
-         this.postorder = r+" ";
+         this.postorder += r+" ";
          System.out.print(r+" ");
       }
    }
