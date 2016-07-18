@@ -152,6 +152,7 @@ public class semantico extends javax.swing.JFrame {
                             "mmatini".length(),
                             lines[i].indexOf("mmattfin"));
                     ecuaciones.add(new Variable(ecuacion, line_number));
+                    this.checkUndefined();
                 }else{
                     try{
                         boolean end = false;
@@ -161,6 +162,7 @@ public class semantico extends javax.swing.JFrame {
                                 end = true;
                                 if(buffer.indexOf("mmattfin") == 0){
                                     ecuaciones.add(new Variable(ecuacion, line_number-1));
+                                    this.checkUndefined();
                                     break;
                                 }
                                 ecuacion += ecuacion.substring(0, ecuacion.indexOf("mmatfin"));
