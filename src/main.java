@@ -34,6 +34,9 @@ public class main extends javax.swing.JFrame {
 
     static Lexico lexicoframe;
     
+    private Sintatico sintactico_frame;
+    private semantico semantico_frame;
+    
     /**
      * Creates new form NewJFrame
      */
@@ -389,12 +392,15 @@ public class main extends javax.swing.JFrame {
     }//GEN-LAST:event_todosActionPerformed
 
     private void sintacticoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sintacticoActionPerformed
-        new Sintatico(Entrada.getText()).setVisible(true);
+        sintactico_frame = new Sintatico(Entrada.getText());
+        sintactico_frame.setVisible(true);
 	// TODO add your handling code here:
     }//GEN-LAST:event_sintacticoActionPerformed
 
     private void semanticoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_semanticoActionPerformed
-            new semantico(Entrada.getText()).setVisible(true);        // TODO add your handling code here:
+        semantico_frame = new semantico(Entrada.getText());
+        semantico_frame.setVisible(true);
+// TODO add your handling code here:
     }//GEN-LAST:event_semanticoActionPerformed
  
     /**

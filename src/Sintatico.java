@@ -27,7 +27,8 @@ public class Sintatico extends javax.swing.JFrame {
      * Creates new form Sintatico
      */
     ArrayList<String> AMostrar = new ArrayList<>();
-    ArrayList<String> APrograma = new ArrayList<>();
+    public ArrayList<String> APrograma = new ArrayList<>();
+    public ArrayList<String> AVariables = new ArrayList<>();
     String texto;
     public Sintatico(String text) {
         initComponents();
@@ -41,7 +42,6 @@ public class Sintatico extends javax.swing.JFrame {
         main.lexicoframe.Analisis(analisis_sintactico, "reserved_words" , Todo , null);
         main.lexicoframe.Analisis(analisis_sintactico, "Simple", Simples, null);
         main.lexicoframe.Analisis(analisis_sintactico, "Compuesta" , Compuesta , null);
-        ArrayList<String> AVariables = new ArrayList<>();
         Extraer(text,"declarar",AVariables);
         mostrar(AVariables, Variables);
         Extraer(text,"mostrar",AMostrar);

@@ -1,3 +1,9 @@
+
+import bst.BST_math;
+import java.util.ArrayList;
+import semantico.Variable;
+import semantico.ErrorSemantico;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -13,13 +19,56 @@ public class semantico extends javax.swing.JFrame {
     /**
      * Creates new form semantico
      */
-    String TextSalida = "";
+    String TextSalida = ""; // Deberia ser un Array List con cada uno de los errores
+    ArrayList<String> salida = new ArrayList<>();
+    Sintatico sintactico;
+    
+    String contenido;
+    ArrayList<Variable> variables = new ArrayList<>();
+    ArrayList<Variable> ecuaciones = new ArrayList<>();
+    ArrayList<ErrorSemantico> errores = new ArrayList<>();
+    
+    
     public semantico(String text) {
+        this.contenido = text; //El texto lo coloque como variable de la clase
         initComponents();
+        //Revisa las correcciones que hice e intenta usar la Clase ErrorSemantico
+        //si lo pruebas y funciona bien, por favor elimina los metodos que le coloque
+        //el decorador @Deprecated
         CheckStartEnd(text);
         mostrarResultados(); 
-         
+        
+        
+        //Nuevos Metodos
+        checkStartEnd();
+        loadVariables();
+        checkUndefined();
+        mostrar();
     }
+    
+    public void setSintactico(Sintatico sintactico){
+        this.sintactico = sintactico;
+    }
+    
+    public void mostrar(){
+        if(this.errores.size() == 0){
+            Salida.setText("Sin errores semánticos");
+            return;
+        }
+        String salida = "";
+        int i = 0;
+        for(ErrorSemantico error: this.errores){
+            i++;
+            salida += i + ".- " +  error.getString() +"\n";
+        }
+        Salida.setText(salida);
+    }
+    
+    /**
+     * Deberia de usar un Array en vez de un String
+     * @deprecated
+     */
+    @Deprecated
     public  void mostrarResultados(){
          if(!"".equals(TextSalida)){
             Salida.setText(TextSalida);
@@ -29,6 +78,12 @@ public class semantico extends javax.swing.JFrame {
         }
           
     }
+    
+    /**
+     * Deberia de usar un Array en vez de un String
+     * @deprecated
+     */
+    @Deprecated
     public void CheckStartEnd(String Conte)
     {
             if(Conte.indexOf("inicio")==-1)
@@ -39,6 +94,155 @@ public class semantico extends javax.swing.JFrame {
             { TextSalida += "El programa no esta finalizado\n";
             }
     }
+    
+    public void checkStartEnd(){
+        if(this.contenido.indexOf("inicio")==-1)
+        { 
+            this.errores.add(new ErrorSemantico(
+                    //numero de linea (-1 si no es especificado)
+                    -1,
+                    //numero de columna (-1 si no es especificado)
+                    -1,
+                    //Descripcion del error
+                    "El programa no esta inciado"));
+        }
+        if(this.contenido.replaceAll("mmattfin", "").indexOf("fin")==-1)
+        { 
+            this.errores.add(new ErrorSemantico(
+                    //numero de linea (-1 si no es especificado)
+                    -1,
+                    //numero de columna (-1 si no es especificado)
+                    -1,
+                    //Descripcion del error
+                    "El programa no esta finalizado"));
+        }
+    }
+    
+    /**
+     * Verifica que las variables que utilice la ecuacion hayan sido declaradas
+     */
+    public void loadVariables(){
+        
+        String[] lines = this.contenido.split("\n");
+        for(int i = 0; i < lines.length;i++){
+            int line_number = i+1;
+            //Revisar por variables
+            if(lines[i].trim().startsWith("declarar")){
+                // Extraer el nombre de la variable
+                String variable = lines[i].replace("declarar", "").trim();
+                variable = variable.trim();
+                //revisar si se proporciono nombre a la declaracion
+                if(variable.equals("")){
+                    this.errores.add(new ErrorSemantico(
+                            line_number, 
+                            8, 
+                            "Esperado nombre de variable en la declaracion"));
+                }else{
+                    variables.add(
+                        new Variable(
+                                variable, 
+                                line_number));
+                }
+                
+            }
+            if(lines[i].trim().startsWith("mmatini")){
+                String ecuacion = "";
+                if(lines[i].indexOf("mmattfin") != -1){
+                    ecuacion = lines[i].trim().substring(
+                            "mmatini".length(),
+                            lines[i].indexOf("mmattfin"));
+                    ecuaciones.add(new Variable(ecuacion, line_number));
+                }else{
+                    try{
+                        boolean end = false;
+                        while(!end){
+                            String buffer = lines[line_number++].trim();
+                            if(buffer.indexOf("mmattfin") != -1){
+                                end = true;
+                                if(buffer.indexOf("mmattfin") == 0){
+                                    ecuaciones.add(new Variable(ecuacion, line_number-1));
+                                    break;
+                                }
+                                ecuacion += ecuacion.substring(0, ecuacion.indexOf("mmatfin"));
+                                ecuaciones.add(new Variable(ecuacion, line_number-1));
+                            }else{
+                                ecuacion += buffer;
+                            }
+                        }
+                        
+                    }catch(IndexOutOfBoundsException outOfBounds){
+                        this.errores.add(new ErrorSemantico(
+                            line_number,
+                            "mmatini".length(),
+                            "Se esperaba mmattfin"    
+                        ));
+                    }
+                    
+                }
+            }
+        }
+    }
+    
+    public void checkUndefined(){
+        String[] exclude = "1 2 3 4 5 6 7 8 9 0 * / - + = ( ) [ ] { }".split(" ");
+        for(Variable ecuacion: ecuaciones){
+            //Esto se hace para separar cada digito y obtener asi las variables
+            //dentro de la ecuacion
+            BST_math arbolito = new BST_math(ecuacion.getValue());
+            String[] elem = arbolito.postOrderTraversal().split(" ");
+            
+            for(String e: elem){
+                if(!this.inArray(exclude, e)){
+                    // Si entra aqui mas le vale que sea una variable declarada
+                    if(!this.inVariables(e)){
+                        errores.add(new ErrorSemantico(
+                        ecuacion.line,
+                        ecuacion.getValue().indexOf(e),
+                        "Variable: \"" + e + "\" no declarada"
+                        ));
+                    }
+                }
+            }
+            
+        }
+        
+        //Checkear los mostrar
+        String[] lines = this.contenido.split("\n");
+        String mostrar_token = "mostrar";
+        for(int line_number = 1; line_number <= lines.length;line_number++){
+            if(lines[line_number-1].trim().startsWith(mostrar_token)){
+                String var = lines[line_number-1].trim().replace(mostrar_token, "");
+                var = var.trim();
+                if(!this.inVariables(var)){
+                    errores.add(new ErrorSemantico(
+                            line_number,
+                            mostrar_token.length(),
+                            "Variable: \"" + var + "\" no declarada"
+                    ));
+                }
+            }
+        }
+    }
+    
+    private boolean inVariables( String var ){
+        for(Variable variable: variables){
+            if(variable.getValue().equals(var)){
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    private boolean inArray(String[] array, String value){
+        for(String v: array){
+            if(v.equals(value)){
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    
     
     private semantico() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
