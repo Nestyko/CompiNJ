@@ -39,6 +39,7 @@ public class semantico extends javax.swing.JFrame {
         //Nuevos Metodos
         checkStartEnd();
         checkDeclareProgram();
+        checkOutStartEnd();
         loadVariables();
         checkUndefined();
         mostrar();
@@ -91,17 +92,29 @@ public class semantico extends javax.swing.JFrame {
             }
             else{
                  
-                 if(!removeNameProgram().replaceAll(" ", "").replaceAll("\n", "").startsWith("programainicio")){
+                 if(!removeProgramName(false).replaceAll(" ", "").replaceAll("\n", "").startsWith("programainicio")){
                      this.errores.add(new ErrorSemantico(-1, -1, "declaracion del programa fuera de lugar"));
                  }
             }
     }
     
-    public String removeNameProgram(){
+    public String removeProgramName(boolean remove){
         String part1 = this.contenido.substring(0,this.contenido.indexOf("programa")+8);
         String part2 = this.contenido.substring(this.contenido.indexOf("\n", this.contenido.indexOf("programa"))+1,this.contenido.length());
         System.out.println("Programa Sin Nombre:"+part1+part2);
-        return part1+part2;
+        if (remove)
+            return part1+part2.replaceAll("programa", "");
+        else
+            return part1+part2; 
+    }
+    
+    public void checkOutStartEnd(){
+        String part1 = removeProgramName(true).substring(0,removeProgramName(true).indexOf("inicio"));
+        String part2 = removeProgramName(true).substring(removeProgramName(true).indexOf("fin",removeProgramName(true).indexOf("inicio")),removeProgramName(true).length());
+        String check = (part1+part2).replace(" ", "").replace("\n", "");
+        if(!"".equals(check)){
+             this.errores.add(new ErrorSemantico(-1, -1, "contenido fuera de sentencias de inicio y fin"));
+        }
     }
     
     /**
