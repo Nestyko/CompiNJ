@@ -90,13 +90,19 @@ public class semantico extends javax.swing.JFrame {
                 this.errores.add(new ErrorSemantico(-1, -1, "declaracion del programa inexistente"));
             }
             else{
-                 if(!this.contenido.replaceAll(" ", "").replaceAll("\n", "").startsWith("inicioprograma")){
+                 
+                 if(!removeNameProgram().replaceAll(" ", "").replaceAll("\n", "").startsWith("programainicio")){
                      this.errores.add(new ErrorSemantico(-1, -1, "declaracion del programa fuera de lugar"));
                  }
             }
     }
     
-    
+    public String removeNameProgram(){
+        String part1 = this.contenido.substring(0,this.contenido.indexOf("programa")+8);
+        String part2 = this.contenido.substring(this.contenido.indexOf("\n", this.contenido.indexOf("programa"))+1,this.contenido.length());
+        System.out.println("Programa Sin Nombre:"+part1+part2);
+        return part1+part2;
+    }
     
     /**
      * Verifica que las variables que utilice la ecuacion hayan sido declaradas
