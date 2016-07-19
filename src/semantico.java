@@ -35,12 +35,10 @@ public class semantico extends javax.swing.JFrame {
         //Revisa las correcciones que hice e intenta usar la Clase ErrorSemantico
         //si lo pruebas y funciona bien, por favor elimina los metodos que le coloque
         //el decorador @Deprecated
-        CheckStartEnd(text);
-        mostrarResultados(); 
-        
-        
+       
         //Nuevos Metodos
         checkStartEnd();
+        checkDeclareProgram();
         loadVariables();
         checkUndefined();
         mostrar();
@@ -62,37 +60,6 @@ public class semantico extends javax.swing.JFrame {
             salida += i + ".- " +  error.getString() +"\n";
         }
         Salida.setText(salida);
-    }
-    
-    /**
-     * Deberia de usar un Array en vez de un String
-     * @deprecated
-     */
-    @Deprecated
-    public  void mostrarResultados(){
-         if(!"".equals(TextSalida)){
-            Salida.setText(TextSalida);
-        }
-        else{
-            Salida.setText("Sin errores semánticos");
-        }
-          
-    }
-    
-    /**
-     * Deberia de usar un Array en vez de un String
-     * @deprecated
-     */
-    @Deprecated
-    public void CheckStartEnd(String Conte)
-    {
-            if(Conte.indexOf("inicio")==-1)
-            { TextSalida += "El programa no esta inciado\n";
-              
-            }
-            if(Conte.replaceAll("mmattfin", "").indexOf("fin")==-1)
-            { TextSalida += "El programa no esta finalizado\n";
-            }
     }
     
     public void checkStartEnd(){
@@ -117,6 +84,19 @@ public class semantico extends javax.swing.JFrame {
                     "El programa no esta finalizado"));
         }
     }
+    
+    public void checkDeclareProgram(){
+            if(this.contenido.indexOf("programa")==-1){
+                this.errores.add(new ErrorSemantico(-1, -1, "declaracion del programa inexistente"));
+            }
+            else{
+                 if(!this.contenido.replaceAll(" ", "").replaceAll("\n", "").startsWith("inicioprograma")){
+                     this.errores.add(new ErrorSemantico(-1, -1, "declaracion del programa fuera de lugar"));
+                 }
+            }
+    }
+    
+    
     
     /**
      * Verifica que las variables que utilice la ecuacion hayan sido declaradas
@@ -269,7 +249,7 @@ public class semantico extends javax.swing.JFrame {
 
         setResizable(false);
 
-        Resultado.setText("Resulado del Analisis Semantico:");
+        Resultado.setText("Resultado del Analisis Semantico:");
 
         Salida.setColumns(20);
         Salida.setLineWrap(true);
@@ -305,7 +285,7 @@ public class semantico extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 380, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 555, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(Resultado)
                         .addGap(0, 0, Short.MAX_VALUE)))
@@ -317,7 +297,7 @@ public class semantico extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(Resultado)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 237, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 266, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
