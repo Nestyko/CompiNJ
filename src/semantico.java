@@ -137,6 +137,14 @@ public class semantico extends javax.swing.JFrame {
                             8, 
                             "Esperado nombre de variable en la declaracion"));
                 }else{
+                    if(this.ecuaciones.size() > 0 && this.ecuaciones.get(this.ecuaciones.size()-1).line < line_number){
+                        this.errores.add(new ErrorSemantico(
+                                line_number,
+                                0,
+                                "Declaraciones de Variables debe establecerse antes de las expresiones matemáticas"
+                        ));
+                        return;
+                    }
                     variables.add(
                         new Variable(
                                 variable, 
@@ -145,6 +153,14 @@ public class semantico extends javax.swing.JFrame {
                 
             }
             if(lines[i].trim().startsWith("mmatini")){
+                if(this.variables.size() > 0 && line_number < this.variables.get(this.variables.size()-1).line){
+                    this.errores.add(new ErrorSemantico(
+                            line_number,
+                            lines[i].indexOf("mmatini")+("mmatini").length(),
+                            "Expresiones matemática deben esta despues de todas las declaraciones"
+                    ));
+                    return;
+                }
                 String ecuacion = "";
                 if(lines[i].indexOf("mmattfin") != -1){
                     ecuacion = lines[i].trim().substring(
@@ -339,7 +355,7 @@ public class semantico extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 555, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 679, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(Resultado)
                         .addGap(0, 0, Short.MAX_VALUE)))
