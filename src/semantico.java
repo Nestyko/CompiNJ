@@ -131,6 +131,7 @@ public class semantico extends javax.swing.JFrame {
                     ecuacion = lines[i].trim().substring(
                             "mmatini".length(),
                             lines[i].indexOf("mmattfin"));
+                    ecuacion = ecuacion.replace(" ", "");
                     ecuaciones.add(new Variable(ecuacion, line_number));
                     this.checkUndefined();
                 }else{
@@ -141,14 +142,19 @@ public class semantico extends javax.swing.JFrame {
                             if(buffer.indexOf("mmattfin") != -1){
                                 end = true;
                                 if(buffer.indexOf("mmattfin") == 0){
+                                    ecuacion = ecuacion.replace(" ", "");
                                     ecuaciones.add(new Variable(ecuacion, line_number-1));
                                     this.checkUndefined();
                                     break;
                                 }
                                 ecuacion += ecuacion.substring(0, ecuacion.indexOf("mmatfin"));
+                                ecuacion = ecuacion.replace(" ", "");
                                 ecuaciones.add(new Variable(ecuacion, line_number-1));
                             }else{
                                 ecuacion += buffer;
+                                ecuacion = ecuacion.replace(" ", "");
+                                ecuacion = ecuacion.replace("\n\n", "");
+                                ecuacion = ecuacion.replace("\n", "");
                             }
                         }
                         
@@ -165,23 +171,38 @@ public class semantico extends javax.swing.JFrame {
         }
     }
     
+    private boolean isError(ErrorSemantico error){
+        for(ErrorSemantico e: this.errores){
+            if(e.description.equals(error.description) 
+                    && e.line == error.line 
+                    && e.col == error.col){
+                return true;
+            }
+        }
+        return false;
+    }
+    
     public void checkUndefined(){
         String[] exclude = "1 2 3 4 5 6 7 8 9 0 * / - + = ( ) [ ] { }".split(" ");
         for(Variable ecuacion: ecuaciones){
             //Esto se hace para separar cada digito y obtener asi las variables
             //dentro de la ecuacion
-            BST_math arbolito = new BST_math(ecuacion.getValue());
+            BST_math arbolito = new BST_math(ecuacion.getValue().replace(" ",""));
             String[] elem = arbolito.postOrderTraversal().split(" ");
             
             for(String e: elem){
                 if(!this.inArray(exclude, e)){
                     // Si entra aqui mas le vale que sea una variable declarada
                     if(!this.inVariables(e)){
-                        errores.add(new ErrorSemantico(
+                        ErrorSemantico err = new ErrorSemantico(
                         ecuacion.line,
                         ecuacion.getValue().indexOf(e),
                         "Variable: \"" + e + "\" no declarada"
-                        ));
+                        );
+                        if(!this.isError(err)){
+                            errores.add(err);
+                        }
+                        
                     }
                 }
             }
@@ -195,12 +216,26 @@ public class semantico extends javax.swing.JFrame {
             if(lines[line_number-1].trim().startsWith(mostrar_token)){
                 String var = lines[line_number-1].trim().replace(mostrar_token, "");
                 var = var.trim();
-                if(!this.inVariables(var)){
-                    errores.add(new ErrorSemantico(
+                if(var.equals("")){
+                    ErrorSemantico err = new ErrorSemantico(
+                            line_number,
+                            mostrar_token.length(),
+                            "Se esperaba nombre de Variable"
+                    );
+                    if(!this.isError(err)){
+                        errores.add(err);
+                    }
+                }
+                else if(!this.inVariables(var)){
+                    ErrorSemantico err = new ErrorSemantico(
                             line_number,
                             mostrar_token.length(),
                             "Variable: \"" + var + "\" no declarada"
-                    ));
+                    );
+                    if(!this.isError(err)){
+                        errores.add(err);
+                    }
+                    
                 }
             }
         }
