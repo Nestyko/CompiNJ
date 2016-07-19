@@ -1,4 +1,5 @@
 
+import analyzers.LexicalAnalyzer;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -8,6 +9,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
@@ -398,7 +400,8 @@ public class main extends javax.swing.JFrame {
     }//GEN-LAST:event_sintacticoActionPerformed
 
     private void semanticoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_semanticoActionPerformed
-        semantico_frame = new semantico(Entrada.getText());
+        String noComments = LexicalAnalyzer.removeComments(Entrada.getText());
+        semantico_frame = new semantico(noComments);
         semantico_frame.setVisible(true);
 // TODO add your handling code here:
     }//GEN-LAST:event_semanticoActionPerformed

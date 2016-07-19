@@ -183,7 +183,7 @@ public class LexicalAnalyzer {
         return result;
    }
     
-    private String removeComments(String text) {
+    public static String removeComments(String text) {
         comentario=new ArrayList<>();
         String comment_token = "\\\\";
         String start_comment_token = "\\*";
@@ -222,7 +222,7 @@ public class LexicalAnalyzer {
 	return text;
       }
     
-     public String ObtenerExpresiones(String text) {
+     public static String ObtenerExpresiones(String text) {
         expresiones=new ArrayList<>();
         String start_expre_token = "mmatini";
         String end_expre_token = "mmattfin";
