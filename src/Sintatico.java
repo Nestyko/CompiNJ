@@ -71,8 +71,8 @@ public class Sintatico extends javax.swing.JFrame {
     for(String mostrar : AMostrar){
         String[] replace = mostrar.split(" ");
         for (int i=0;i<replace.length;i++){
-        Conte = Conte.replaceFirst(replace[i],"");
-    }
+            Conte = Conte.replaceFirst(replace[i],"");
+        }
     }
     for(String programa : APrograma){
         String[] replace = programa.split(" ");
@@ -83,21 +83,29 @@ public class Sintatico extends javax.swing.JFrame {
     
               
     Conte = Conte.replaceAll("\n\n", "");
-    String[] Error = Conte.split("\n");
+    String[] Error = Conte.trim().split("\n");
     if (Error.length>0){
+        boolean hayError = false;
 	for (String error : Error){
-	    if(!"".equals(error))
-	    Errores.addItem(error);
+	    if(!"".equals(error)){
+                Errores.addItem(error);
+                hayError = true;
+            }
+	    
 	}
-            Semantico.setEnabled(false);
-            main.semantico.setEnabled(false);
+        if(hayError){
+           Semantico.setEnabled(false);
+           main.semantico.setEnabled(false); 
+           return;
         }
-	else{
-	    Errores.setVisible(false);
-	    SinErrores.setVisible(true);
-            Semantico.setEnabled(true);
-            main.semantico.setEnabled(true);
-	}
+            
+    }
+	
+        Errores.setVisible(false);
+        SinErrores.setVisible(true);
+        Semantico.setEnabled(true);
+        main.semantico.setEnabled(true);
+	
     }
     
     public void Extraer(String Conte, String palabra, ArrayList<String> Array){

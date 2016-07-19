@@ -87,7 +87,8 @@ public class EcuationParser {
         int initial_index = index;
         while(this.isTokenized(tokenized, index)){
             for(Separador separador : separadores){
-                if(index > tokenized.indexOf(separador.token())){
+                int coincidence = tokenized.indexOf(separador.token());
+                if(coincidence >= 0 && index > coincidence){
                     tokenized = separador.replaceForOriginal(tokenized);
                     index += separador.length();
                 }
