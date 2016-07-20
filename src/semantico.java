@@ -103,17 +103,18 @@ public class semantico extends javax.swing.JFrame {
         String part2 = this.contenido.substring(this.contenido.indexOf("\n", this.contenido.indexOf("programa"))+1,this.contenido.length());
         System.out.println("Programa Sin Nombre:"+part1+part2);
         if (remove)
-            return part1+part2.replaceAll("programa", "");
+            return (part1+part2).replaceAll("programa", "");
         else
             return part1+part2; 
     }
     
     public void checkOutStartEnd(){
-        String part1 = removeProgramName(true).substring(0,removeProgramName(true).indexOf("inicio"));
-        String part2 = removeProgramName(true).substring(removeProgramName(true).indexOf("fin",removeProgramName(true).indexOf("inicio")),removeProgramName(true).length());
-        String check = (part1+part2).replace(" ", "").replace("\n", "");
-        if(!"".equals(check)){
-             this.errores.add(new ErrorSemantico(-1, -1, "contenido fuera de sentencias de inicio y fin"));
+        String Conte = removeProgramName(true).replaceAll("mmattfin", "").replaceAll(" ", "").replaceAll("\n", "");
+        if(!(Conte.indexOf("inicio")==0)){
+            this.errores.add(new ErrorSemantico(-1, -1, "El progrma contiene sentencias antes del inicio"));
+        }
+        if(!(Conte.indexOf("fin")+3==Conte.length())){
+            this.errores.add(new ErrorSemantico(-1, -1, "El progrma contiene sentencias despues del fin"));
         }
     }
     
