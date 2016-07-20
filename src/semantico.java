@@ -110,10 +110,10 @@ public class semantico extends javax.swing.JFrame {
     
     public void checkOutStartEnd(){
         String Conte = removeProgramName(true).replaceAll("mmattfin", "").replaceAll(" ", "").replaceAll("\n", "");
-        if(!(Conte.indexOf("inicio")==0)){
+        if(!(Conte.indexOf("inicio")==0) && Conte.indexOf("inicio")!=-1){
             this.errores.add(new ErrorSemantico(-1, -1, "El progrma contiene sentencias antes del inicio"));
         }
-        if(!(Conte.indexOf("fin")+3==Conte.length())){
+        if(!(Conte.indexOf("fin")+3==Conte.length()) && Conte.indexOf("fin")!=-1){
             this.errores.add(new ErrorSemantico(-1, -1, "El progrma contiene sentencias despues del fin"));
         }
     }
@@ -318,6 +318,7 @@ public class semantico extends javax.swing.JFrame {
         volver = new javax.swing.JMenuItem();
         Salir = new javax.swing.JMenuItem();
 
+        setTitle("Analisis semantico");
         setResizable(false);
 
         Resultado.setText("Resultado del Analisis Semantico:");
