@@ -64,20 +64,20 @@ public class Sintatico extends javax.swing.JFrame {
     
     public void Errores(String Conte){
     for (int i=0;i<Variables.getItemCount();i++){
-        String error = Variables.getItemAt(i).toString();
+        String error = Variables.getItemAt(i).toString().toLowerCase();
         Conte = Conte.replaceAll(error,"");
     }
     
     for(String mostrar : AMostrar){
         String[] replace = mostrar.split(" ");
         for (int i=0;i<replace.length;i++){
-            Conte = Conte.replaceFirst(replace[i],"");
+            Conte = Conte.replaceFirst(replace[i].toLowerCase(),"");
         }
     }
     for(String programa : APrograma){
         String[] replace = programa.split(" ");
         for (int i=0;i<replace.length;i++){
-        Conte = Conte.replaceFirst(replace[i],"");
+        Conte = Conte.replaceFirst(replace[i].toLowerCase(),"");
     }
     }
     
